@@ -1,16 +1,16 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import {User} from '../models/User.js'
+import { User } from '../models/User.js'
 
 const signToken = (userId) =>
-  jwt.sign({userId}, process.env.JWT_SECRET || 'dev-secret-change-me', {
-    expiresIn: '7d'
+  jwt.sign({ userId }, process.env.JWT_SECRET || 'dev-secret-change-me', {
+    expiresIn: '7d',
   })
 
 const sanitizeUser = (user) => ({
   _id: user._id,
   name: user.name,
-  email: user.email
+  email: user.email,
 })
 
 export const signup = async (req, res) => {
@@ -76,7 +76,6 @@ export const login = async (req, res) => {
   }
 }
 
-
 export const getCurrentUser = async (req, res) => {
-  return res.json({user: sanitizeUser(req.user)})
+  return res.json({ user: sanitizeUser(req.user) })
 }

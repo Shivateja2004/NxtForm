@@ -17,13 +17,8 @@ const allowedOrigins = new Set([configuredClientUrl, 'http://localhost:5173', 'h
 
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.has(origin)) {
-        return callback(null, true)
-      }
-
-      return callback(new Error(`CORS blocked for origin: ${origin}`))
-    }
+    origin: true,
+    credentials: true,
   })
 )
 app.use(express.json())
